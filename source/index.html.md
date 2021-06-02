@@ -2,14 +2,12 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
+
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - If you have any questions,<br> please feel free to email us at<br> support@voxpopme.com
+
 
 includes:
   - errors
@@ -21,11 +19,10 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+The Voxpopme embed widgets can be implemented by adding snippets of code onto your web page(s)<br><br>
+The widgets make it so that you can easily view Voxpopme content within your own platform.
+<br><br>
+The summary widget allows you to preview videos and themes similar to how the Auto-video summarization section appears within Insights when viewing the portal directly
 
 # Authentication
 
@@ -67,58 +64,59 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# 
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
+## Summary Widget
 
 ```javascript
-const kittn = require('kittn');
+  <vpm-auto-summary-widget data-config="vpmConfig"></vpm-auto-summary-widget>
+        <script>
+              var vpmGlobal = {
+                  "auth": {
+                      "version": "v1",
+                      "payload": "PAYLOAD"
+                  }
+              }
+              var vpmConfig = {
+                  "questionId": [your_project_id]
+              };
+              (function() {
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://vpm-importer.s3-eu-west-1.amazonaws.com/media/general_client/voxpopme/embed-widget/bundle.js';
+                  (d.head || d.body).appendChild(s);
+              })();
+        </script>
+```
+> In the above example, replace [your_project_id] with your desired Project ID.
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+> If you would like to see an example of this within a browser before adding it; you can save the below example as a .html file, replace [<mark>your_project_id</mark>] with your desired ID and open it in a web browser:
+
+```javascript
+<html>
+    <title>Widget Page</title>
+    <body>
+        <vpm-auto-summary-widget data-config="vpmConfig"></vpm-auto-summary-widget>
+        <script>
+              var vpmGlobal = {
+                  "auth": {
+                      "version": "v1",
+                      "payload": "PAYLOAD"
+                  }
+              }
+              var vpmConfig = {
+                  "questionId": [your_project_id]
+              };
+              (function() {
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://vpm-importer.s3-eu-west-1.amazonaws.com/media/general_client/voxpopme/embed-widget/bundle.js';
+                  (d.head || d.body).appendChild(s);
+              })();
+        </script>
+    </body>
+</html>
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
+Replace [your_project_id] in the following code with your desired Project ID:
 
 ### HTTP Request
 
@@ -136,13 +134,6 @@ Remember — a happy kitten is an authenticated kitten!
 </aside>
 
 ## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
 
 ```python
 import kittn
@@ -175,7 +166,7 @@ let max = api.kittens.get(2);
 }
 ```
 
-This endpoint retrieves a specific kitten.
+Replace your_project_id in the following code with your desired Project ID
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
